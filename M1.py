@@ -1,6 +1,7 @@
 
 #Librerias
 import os
+import pickle
 import pandas as pd
 import numpy as np
 import seaborn as sns
@@ -215,3 +216,11 @@ ax.set_title("Curva ROC - Regresion Logistica")
 ax.legend()
 plt.grid(alpha=0.3)
 plt.show()
+
+
+# Nombre del archivo pkl
+archivo_modelo = "mejor_modelo_exam.pkl"
+
+# Crear archivo pkl
+with open(archivo_modelo, "wb") as archivo:
+    pickle.dump(best_pipe, archivo)
