@@ -78,17 +78,11 @@ plt.show()
 
 
 #Modelado
-def drop_specific_columns(x):
-    drop_cols = ["prior_programming_experience", "student_id", "final_exam_score"]
-    return x.drop(drop_cols, axis=1, errors="ignore")
-
-
-drop_cols = ["prior_programming_experience", "student_id", "final_exam_score"] #Columnas a eliminar
+drop_cols = ["prior_programming_experience", "student_id", "final_exam_score"]
+df = df.drop(columns=drop_cols, errors="ignore")
 
 num_var = make_column_selector(dtype_include="number")
 cat_var = make_column_selector(dtype_include="object")
-
-pipe_drop = FunctionTransformer(drop_specific_columns)
 
 pipe_num = Pipeline(steps = [("imp_num", SimpleImputer(strategy = "median"))])
 
@@ -157,7 +151,6 @@ mejor_modelo = {}
 print("Evaluacion de modelos:\n")
 for name, modelo_data in pipe_classifier.items():
     pipe_final = Pipeline( steps = [
-        ("drop", pipe_drop),
         ("preprocessor",  pp),
         ("selector", SelectKBest(score_func=f_classif)),
         ("classifier", modelo_data["model"])
