@@ -19,6 +19,7 @@ from sklearn.preprocessing import OneHotEncoder, FunctionTransformer
 from sklearn.compose import ColumnTransformer, make_column_selector
 from sklearn.feature_selection import SelectFromModel, SelectKBest, f_classif
 from sklearn.inspection import PartialDependenceDisplay
+from sklearn.base import clone
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -213,10 +214,28 @@ ax.legend()
 plt.grid(alpha=0.3)
 plt.show()
 
+#Hasta acá llega nuestro proceso de descrubrimiento y modelado
+#ahora procederemos a generar un modelo de produccion para desplegarlo en la API
+
+print("\n--- GENERANDO MODELO DE PRODUCCIÓN (SOLO VARIABLES ÚTILES) ---")
+cols_utiles_limpias = [col.split("__")[1] for col in var_finales]
+print(cols_utiles_limpias)
+
+X_train_prod = x_train[cols_utiles_limpias]
+X_test_prod = x_test[cols_utiles_limpias]
+
+modelo_base = mejor_modelo[ganador]["mejor_estimator"].named_steps["classifier"]
+
+pipe_produccion = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")), 
+    ("modelo", clone(modelo_base)) # Clona la configuración del ganador (LogisticRegression con sus params)
+])
+
+pipe_produccion.fit(X_train_prod, y_train)
 
 # Nombre del archivo pkl
 archivo_modelo = "mejor_modelo_exam.pkl"
 
 # Crear archivo pkl
 with open(archivo_modelo, "wb") as archivo:
-    pickle.dump(best_pipe, archivo)
+    pickle.dump(pipe_produccion, archivo)

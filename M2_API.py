@@ -10,10 +10,10 @@ app = FastAPI(title="Predicción de Examen")
 
 class DatosEstudiante(BaseModel):
 
-    projects_completed: float
     hours_spent_learning_per_week: float
-    self_reported_confidence_python: float
+    projects_completed: float
     debugging_sessions_per_week: float
+    self_reported_confidence_python: float
     
     #ASI ESTABA ANTES:
 
