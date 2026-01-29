@@ -9,20 +9,29 @@ with open('mejor_modelo_exam.pkl', 'rb') as archivo:
 app = FastAPI(title="Predicción de Examen")
 
 class DatosEstudiante(BaseModel):
-    hours_spent_learning_per_week: float
+
     projects_completed: float
-    debugging_sessions_per_week: float
+    hours_spent_learning_per_week: float
     self_reported_confidence_python: float
-    attendance_rate: float
-    sleep_hours: float
-    previous_score: float
-    age: float
-    weeks_in_course: float
-    tutorial_videos_watched: float
-    practice_problems_solved: float
-    country: str
-    uses_kaggle: str
-    participates_in_discussion_forums: str
+    debugging_sessions_per_week: float
+    
+    #ASI ESTABA ANTES:
+
+
+    # hours_spent_learning_per_week: float
+    # projects_completed: float
+    # debugging_sessions_per_week: float
+    # self_reported_confidence_python: float
+    # attendance_rate: float
+    # sleep_hours: float
+    # previous_score: float
+    # age: float
+    # weeks_in_course: float
+    # tutorial_videos_watched: float
+    # practice_problems_solved: float
+    # country: str
+    # uses_kaggle: str
+    # participates_in_discussion_forums: str
 
 @app.post("/predecir")
 async def predecir(estudiante: DatosEstudiante):
