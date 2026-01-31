@@ -54,7 +54,7 @@ La justificación de la elección del Accuracy es netamente arbitraria dado el c
   &nbsp;"hours_spent_learning_per_week": 21,  
   &nbsp;"projects_completed": 6,  
   &nbsp;"debugging_sessions_per_week": 4,  
-  &nbsp;"self_reported_confidence_python": 0.6  
+  &nbsp;"self_reported_confidence_python": 7  
 }  
 
 | Parámetro | Valor | Descripción |
@@ -62,7 +62,7 @@ La justificación de la elección del Accuracy es netamente arbitraria dado el c
 | `hours_spent_learning_per_week` | 21 | Horas promedio por semana de aprendizaje en Python |
 | `projects_completed` | 6 | Proyectos en Python completados en el curso |
 | `debugging_sessions_per_week` | 4 | Promedio de sesiones haciendo debugging por semana |
-| `self_reported_confidence_python` | 0.6 | Confianza autopercibida en programación en Python |
+| `self_reported_confidence_python` | 7 | Confianza autopercibida en programación en Python (1-10)|
 
 ## Ejemplo de Output
 
@@ -72,13 +72,13 @@ A continuación se presenta un ejemplo:
 
 {  
   &nbsp;"pasara_el_examen": 1,  
-  &nbsp;"probabilidad_exito": 0.9312633590021154  
+  &nbsp;"probabilidad_exito": 0.93
 }
 
 | Resultado | Valor |
 | :--- | :--- |
 | **pasara_el_examen** | 1 |
-| **probabilidad_exito** | 0.9312633590021154 |
+| **probabilidad_exito** | 0.93 |
 
 
 
